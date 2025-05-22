@@ -2,21 +2,112 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tambah Eksperimen</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .form-wrapper {
+      max-width: 600px;
+      margin: 40px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .form-wrapper h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 100px;
+    }
+
+    button {
+      background-color: #2563eb;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #1d4ed8;
+    }
+
+    .success-message {
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
   <header>
     <h1>Tambah Eksperimen Baru</h1>
+    <nav>
+      <a href="index.html">Kembali ke Beranda</a>
+    </nav>
   </header>
 
-  <div class="container">
-    <p>Halaman ini akan menampilkan form untuk kontributor menambahkan eksperimen baru.</p>
-    <!-- Form bisa ditambahkan di sini -->
+  <div class="form-wrapper">
+    <h2>Formulir Kontributor</h2>
+    <form id="experimentForm">
+      <label for="judul">Judul Eksperimen</label>
+      <input type="text" id="judul" name="judul" required />
+
+      <label for="deskripsi">Deskripsi Singkat</label>
+      <textarea id="deskripsi" name="deskripsi" required></textarea>
+
+      <label for="link">URL Halaman Eksperimen</label>
+      <input type="text" id="link" name="link" required placeholder="contoh: gerak-jatuh-bebas.html" />
+
+      <button type="submit">Kirim</button>
+    </form>
+    <div class="success-message" id="successMessage" style="display: none;">
+      Eksperimen berhasil ditambahkan (simulasi)!
+    </div>
   </div>
 
   <footer>
-    &copy; 2025 HCP Lab Fisika.
+    &copy; 2025 Phyezics
   </footer>
+
+  <script>
+    document.getElementById('experimentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const judul = document.getElementById('judul').value;
+      const deskripsi = document.getElementById('deskripsi').value;
+      const link = document.getElementById('link').value;
+
+      console.log("Data eksperimen baru:");
+      console.log({ judul, deskripsi, link });
+
+      // Tampilkan pesan sukses
+      document.getElementById('successMessage').style.display = 'block';
+
+      // Reset form
+      this.reset();
+    });
+  </script>
 </body>
 </html>
